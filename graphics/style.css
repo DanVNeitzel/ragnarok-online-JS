@@ -194,7 +194,7 @@ body {
     max-width: 300px;
     height: auto;
     position: absolute;
-    top: 95px;
+    top: 100px;
     left: 155px;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -237,7 +237,7 @@ body {
 }
 
 .user_custom_h {
-    height: 125px !important;
+    height: 130px !important;
 }
 
 .h_xs {
@@ -1050,7 +1050,7 @@ body {
     max-width: 300px;
     height: auto;
     position: absolute;
-    top: 210px;
+    top: 220px;
     left: 155px;
     transform: translate(-50%, -50%);
     background: transparent;
