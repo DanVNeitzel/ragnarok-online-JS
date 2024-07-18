@@ -1,0 +1,150 @@
+.btn {
+  width: 47px;
+  height: 22px;
+  border: 0;
+  margin: 0 10px 0 0;
+}
+
+.btn_back {
+  background: url(buttons/btn_back.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_back:hover {
+  background: url(buttons/btn_back.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_cancel {
+  background: url(buttons/btn_cancel.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_cancel:hover {
+  background: url(buttons/btn_cancel_a.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_close {
+  background: url(buttons/btn_close.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_close:hover {
+  background: url(buttons/btn_close.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_connect {
+  background: url(buttons/btn_connect.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_connect:hover {
+  background: url(buttons/btn_connect_a.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_del {
+  background: url(buttons/btn_del.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_del:hover {
+  background: url(buttons/btn_del_a.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_exit {
+  background: url(buttons/btn_exit.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_exit:hover {
+  background: url(buttons/btn_exit_a.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_help {
+  background: url(buttons/btn_help.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_help:hover {
+  background: url(buttons/btn_help.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_help2 {
+  background: url(buttons/btn_help2.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_help2:hover {
+  background: url(buttons/btn_help2.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_make {
+  background: url(buttons/btn_make.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_make:hover {
+  background: url(buttons/btn_make_a.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_next {
+  background: url(buttons/btn_next.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_next:hover {
+  background: url(buttons/btn_next.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_ok {
+  background: url(buttons/btn_ok.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_ok:hover {
+  background: url(buttons/btn_ok_a.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_ok_dis {
+  background: url(buttons/btn_ok_dis.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_ok_dis:hover {
+  background: url(buttons/btn_ok_dis.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
