@@ -1,0 +1,47 @@
+{
+  "Sprakki": {
+    "name": "[Sprakki]",
+    "dialog1": "Olá! Bem vindo ao mundo de Ragnarok JS.<br> Meu nome é Sprakki e eu estou aqui encarregada de dar a você o guia basico sobre o jogo.",
+    "dialog2": "Servidor Criado em HTML5, CSS3 e Javascript Vanilla. Todo o layout foi desenvolvido na mão sem qualquer utilização de Plugins e APIs.<br><br> Desenvolvido por Daniel Neitzel Vieira.<br> ",
+    "options": [
+      {
+        "value": "Sim, me conte mais sobre o server."
+      },
+      {
+        "value": "Não, vou continuar minha jornada."
+      }
+    ],
+    "options2": [
+      {
+        "value": "Uau, gostei muito."
+      }
+    ]
+  },
+  "Guard_0_2": {
+    "name": "[Guarda do Castelo]",
+    "dialog1": "Estamos aqui a serviço do Capitólio de Rune-Midgart.",
+    "options": [
+      {
+        "value": "Obrigado por seus Serviços."
+      }
+    ]
+  },
+  "instructor_0_3": {
+    "name": "[Instrutor]",
+    "dialog1": "Seja muito bem-vindo, estou aqui para auxiliar na suas decisões para definir qual classe você se encaixaria melhor.",
+    "dialog2": "Você gostaria de passar pelo tutorial, ou ser redirecionado para cidade de Prontera?<br> ",
+    "options": [
+      {
+        "value": "Ir para cidade de Prontera."
+      },
+      {
+        "value": "Quero passar pelo tutorial."
+      }
+    ],
+    "options2": [
+      {
+        "value": "Uau, gostei muito."
+      }
+    ]
+  }
+}
