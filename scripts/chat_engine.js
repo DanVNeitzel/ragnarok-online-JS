@@ -91,7 +91,32 @@ function formatarDataHora() {
 function obterMensagens() {
   // Enviar uma solicitação para obter os dados do servidor
   fetch('https://www.danielneitzel.com.br/api/ragnarokJS/obter_mensagens.php')
-    .then(response => response.json())
+    .then(response => {
+      // Verificar se a resposta está OK
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      // Verificar se há conteúdo na resposta
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new TypeError("A resposta não é JSON válido");
+      }
+      
+      // Clonar a resposta para poder ler o texto em caso de erro
+      return response.clone().text().then(text => {
+        if (!text || text.trim().length === 0) {
+          console.warn('Resposta vazia do servidor, retornando array vazio');
+          return [];
+        }
+        try {
+          return JSON.parse(text);
+        } catch (e) {
+          console.error('Erro ao fazer parse do JSON:', text);
+          throw e;
+        }
+      });
+    })
     .then(data => exibirMensagens(data))
     .catch(error => console.error('Erro ao obter mensagens:', error));
 }
