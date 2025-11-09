@@ -71,6 +71,12 @@ function salvarMensagem() {
     })
     .then(data => {
       console.log('Mensagem salva com sucesso:', data);
+      // Após salvar com sucesso, tentar obter mensagens atualizadas
+      if (data && data.status === 'success') {
+        setTimeout(() => {
+          obterMensagens();
+        }, 200); // Pequeno delay para garantir que o servidor processou
+      }
     })
     .catch((error) => {
       console.error('Erro ao salvar mensagem:', error);
@@ -150,18 +156,19 @@ function exibirMensagemLocal(mensagem) {
 }
 
 function exibirMensagens(mensagens) {
-  // Se não há mensagens do servidor, não limpar o chat (manter mensagens locais)
-  if (!mensagens || mensagens.length === 0) {
+  // Se há mensagens do servidor, usar elas (elas incluem todas as mensagens salvas)
+  if (mensagens && mensagens.length > 0) {
+    liveChat.innerHTML = '';
+
+    // Iterar sobre as mensagens e exibi-las no container
+    mensagens.forEach(function (mensagem) {
+      var mensagemHtml = `<span class="msg_player">${mensagem.nome}: ${mensagem.mensagem}<br></span>`;
+      liveChat.innerHTML += mensagemHtml;
+    });
+
+    console.log(`${mensagens.length} mensagens carregadas do servidor`);
+  } else {
+    // Se não há mensagens do servidor, manter mensagens locais já exibidas
     console.log('Nenhuma mensagem do servidor, mantendo mensagens locais');
-    return;
   }
-
-  // Limpar conteúdo atual apenas se há mensagens do servidor
-  liveChat.innerHTML = '';
-
-  // Iterar sobre as mensagens e exibi-las no container
-  mensagens.forEach(function (mensagem) {
-    var mensagemHtml = `<span class="msg_player">${mensagem.nome}: ${mensagem.mensagem}<br></span>`;
-    liveChat.innerHTML += mensagemHtml;
-  });
 }
