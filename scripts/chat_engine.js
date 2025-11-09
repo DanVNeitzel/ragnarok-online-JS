@@ -45,6 +45,9 @@ function salvarMensagem() {
   //   data: formatarDataHora()
   // };
 
+  // Exibir a mensagem localmente primeiro para feedback imediato
+  exibirMensagemLocal(dados);
+
   fetch('https://www.danielneitzel.com.br/api/ragnarokJS/mensagens.php', {
     method: 'POST',
     headers: {
@@ -124,7 +127,7 @@ function obterMensagens() {
       // Clonar a resposta para poder ler o texto em caso de erro
       return response.clone().text().then(text => {
         if (!text || text.trim().length === 0) {
-          console.warn('Resposta vazia do servidor, retornando array vazio');
+          console.log('Nenhuma mensagem no servidor ainda');
           return [];
         }
         try {
@@ -139,8 +142,22 @@ function obterMensagens() {
     .catch(error => console.error('Erro ao obter mensagens:', error));
 }
 
+function exibirMensagemLocal(mensagem) {
+  // Adicionar a mensagem ao chat imediatamente
+  var mensagemHtml = `<span class="msg_player">${mensagem.nome}: ${mensagem.mensagem}<br></span>`;
+  liveChat.innerHTML += mensagemHtml;
+  rolarParaFinal();
+}
+
 function exibirMensagens(mensagens) {
-  liveChat.innerHTML = ''; // Limpar conteúdo atual
+  // Se não há mensagens do servidor, não limpar o chat (manter mensagens locais)
+  if (!mensagens || mensagens.length === 0) {
+    console.log('Nenhuma mensagem do servidor, mantendo mensagens locais');
+    return;
+  }
+
+  // Limpar conteúdo atual apenas se há mensagens do servidor
+  liveChat.innerHTML = '';
 
   // Iterar sobre as mensagens e exibi-las no container
   mensagens.forEach(function (mensagem) {
