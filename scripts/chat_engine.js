@@ -52,12 +52,30 @@ function salvarMensagem() {
     },
     body: JSON.stringify(dados),
   })
-    .then(response => response.json())
+    .then(response => {
+      // Verificar se a resposta está OK
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+      }
+      
+      // Verificar se há conteúdo na resposta
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new TypeError("A resposta não é JSON válido");
+      }
+      
+      return response.json();
+    })
     .then(data => {
       console.log('Mensagem salva com sucesso:', data);
     })
     .catch((error) => {
       console.error('Erro ao salvar mensagem:', error);
+      
+      // Verificar se é um erro de CORS ou rede
+      if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+        console.error('Possível problema de CORS ou servidor indisponível. Verifique se o servidor está online e configurado para aceitar requisições deste domínio.');
+      }
     });
 }
 
