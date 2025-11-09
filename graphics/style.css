@@ -1169,6 +1169,7 @@ body {
 
 .live-chat>.msg_player {
     color: #fff;
+    font-variant-emoji: none;
 }
 
 .live-chat>.msg_pick_item {
@@ -1181,6 +1182,7 @@ body {
 
 .live-chat>.msg_player {
     color: #fff;
+    font-variant-emoji: none;
 }
 
 /* =================================== */

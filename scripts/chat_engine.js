@@ -167,6 +167,7 @@ function exibirMensagens(mensagens) {
     });
 
     console.log(`${mensagens.length} mensagens carregadas do servidor`);
+    rolarParaFinal();
   } else {
     // Se não há mensagens do servidor, manter mensagens locais já exibidas
     console.log('Nenhuma mensagem do servidor, mantendo mensagens locais');
