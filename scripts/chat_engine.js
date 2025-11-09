@@ -90,7 +90,7 @@ function formatarDataHora() {
 
 function obterMensagens() {
   // Enviar uma solicitação para obter os dados do servidor
-  fetch('http://www.danielneitzel.com.br/api/ragnarokJS/obter_mensagens.php')
+  fetch('https://www.danielneitzel.com.br/api/ragnarokJS/obter_mensagens.php')
     .then(response => response.json())
     .then(data => exibirMensagens(data))
     .catch(error => console.error('Erro ao obter mensagens:', error));
