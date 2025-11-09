@@ -45,7 +45,7 @@ function salvarMensagem() {
   //   data: formatarDataHora()
   // };
 
-  fetch('http://www.danielneitzel.com.br/api/ragnarokJS/mensagens.php', {
+  fetch('https://www.danielneitzel.com.br/api/ragnarokJS/mensagens.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
