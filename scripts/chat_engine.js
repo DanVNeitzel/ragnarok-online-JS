@@ -34,16 +34,16 @@ document.addEventListener('keypress', function (event) {
 
 
 function salvarMensagem() {
-  var dados = {
-    nome: 'usuario_mock',
-    mensagem: inputChat.value,
-    data: formatarDataHora()
-  };
   // var dados = {
-  //   nome: currentUserSelected.name,
+  //   nome: 'usuario_mock',
   //   mensagem: inputChat.value,
   //   data: formatarDataHora()
   // };
+  var dados = {
+    nome: currentUserSelected.name,
+    mensagem: inputChat.value,
+    data: formatarDataHora()
+  };
 
   // Exibir a mensagem localmente primeiro para feedback imediato
   exibirMensagemLocal(dados);
