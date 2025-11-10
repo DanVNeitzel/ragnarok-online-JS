@@ -1,68 +1,68 @@
 {
-  "Tutorial_0_1": {
-    "background": "./graphics/maps/tutorial_0_1_bg.png",
-    "music": "audio/training_camp.mp3",
-    "npcs": [
-      {
-        "class": "npcConfig sprakki",
-        "src": "graphics/npcs/tutorial_guide_2.png",
-        "onclick": "speak('Sprakki')",
-        "spanClass": "sprakki"
-      },
-      {
-        "class": "npcConfig tele01",
-        "src": "graphics/npcs/teleport.png",
-        "onclick": "generateMapAndNpcs('Tutorial_0_2')",
-        "spanClass": "tele01"
-      }
-    ]
-  },
-  "Tutorial_0_2": {
-    "background": "./graphics/maps/tutorial_0_2_bg.png",
-    "music": "audio/training_camp.mp3",
-    "npcs": [
-      {
-        "class": "npcConfig guard_0_2",
-        "src": "graphics/npcs/tutorial_guard.png",
-        "onclick": "speak('Guard_0_2')",
-        "spanClass": "guard_0_2"
-      },
-      {
-        "class": "npcConfig guard_0_2_alt",
-        "src": "graphics/npcs/tutorial_guard.png",
-        "onclick": "speak('Guard_0_2')",
-        "spanClass": "guard_0_2_alt"
-      },
-      {
-        "class": "npcConfig tele02",
-        "src": "graphics/npcs/teleport.png",
-        "onclick": "generateMapAndNpcs('Tutorial_0_3')",
-        "spanClass": "tele02"
-      }
-    ]
-  },
-  "Tutorial_0_3": {
-    "background": "./graphics/maps/tutorial_1_1_bg.png",
-    "music": "audio/training_camp.mp3",
-    "npcs": [
-      {
-        "class": "npcConfig instructor_0_3",
-        "src": "graphics/npcs/tutorial_event_corp.png",
-        "onclick": "speak('instructor_0_3')",
-        "spanClass": "instructor_0_3"
-      }
-    ]
-  },
-  "Tutorial_0_4": {
-    "background": "./graphics/maps/tutorial_1_2_bg.png",
-    "music": "audio/training_camp.mp3",
-    "npcs": [
-      {
-        "class": "npcConfig instructor_0_4",
-        "src": "graphics/npcs/tutorial_guide_5.png",
-        "onclick": "speak('instructor_0_4')",
-        "spanClass": "instructor_0_4"
-      }
-    ]
-  }
+    "Tutorial_0_1": {
+        "background": "./graphics/maps/tutorial_0_1_bg.png",
+        "music": "audio/training_camp.mp3",
+        "npcs": [
+            {
+                "class": "npcConfig sprakki",
+                "src": "graphics/npcs/tutorial_guide_2.png",
+                "onclick": "speak('Sprakki')",
+                "spanClass": "sprakki"
+            },
+            {
+                "class": "npcConfig tele01",
+                "src": "graphics/npcs/teleport.png",
+                "onclick": "generateMapAndNpcs('Tutorial_0_2')",
+                "spanClass": "tele01"
+            }
+        ]
+    },
+    "Tutorial_0_2": {
+        "background": "./graphics/maps/tutorial_0_2_bg.png",
+        "music": "audio/training_camp.mp3",
+        "npcs": [
+            {
+                "class": "npcConfig guard_0_2",
+                "src": "graphics/npcs/tutorial_guard.png",
+                "onclick": "speak('Guard_0_2')",
+                "spanClass": "guard_0_2"
+            },
+            {
+                "class": "npcConfig guard_0_2_alt",
+                "src": "graphics/npcs/tutorial_guard.png",
+                "onclick": "speak('Guard_0_2')",
+                "spanClass": "guard_0_2_alt"
+            },
+            {
+                "class": "npcConfig tele02",
+                "src": "graphics/npcs/teleport.png",
+                "onclick": "generateMapAndNpcs('Tutorial_0_3')",
+                "spanClass": "tele02"
+            }
+        ]
+    },
+    "Tutorial_0_3": {
+        "background": "./graphics/maps/tutorial_1_1_bg.png",
+        "music": "audio/training_camp.mp3",
+        "npcs": [
+            {
+                "class": "npcConfig instructor_0_3",
+                "src": "graphics/npcs/tutorial_event_corp.png",
+                "onclick": "speak('instructor_0_3')",
+                "spanClass": "instructor_0_3"
+            }
+        ]
+    },
+    "Tutorial_0_4": {
+        "background": "./graphics/maps/tutorial_1_2_bg.png",
+        "music": "audio/training_camp.mp3",
+        "npcs": [
+            {
+                "class": "npcConfig instructor_0_4",
+                "src": "graphics/npcs/tutorial_guide_5.png",
+                "onclick": "speak('instructor_0_4')",
+                "spanClass": "instructor_0_4"
+            }
+        ]
+    }
 }

@@ -1,3 +1,34 @@
+/*
+ * Arquivo de configuração e gerenciamento de diálogos de NPCs.
+ * 
+ * Para adicionar um novo diálogo de NPC:
+ * 1. Edite o arquivo config/npc_dialogs.json.
+ * 2. Adicione uma nova entrada com o nome do NPC como chave (deve corresponder ao usado em speak('NomeNPC')).
+ * 3. Defina os campos:
+ *    - name: nome do NPC exibido (ex: "[NomeNPC]")
+ *    - dialog1: texto do primeiro diálogo (pode usar <br> para quebras de linha)
+ *    - options: array de objetos com "value" (texto da opção) e "next" (ação: "close", "dialog2", "map:NomeMapa")
+ *    - dialog2 (opcional): texto do segundo diálogo
+ *    - options2 (opcional): array similar para o segundo diálogo
+ *    - Pode adicionar dialog3, options3, etc., quantos níveis quiser
+ * 
+ * Exemplo:
+ * "NovoNPC": {
+ *   "name": "[Novo NPC]",
+ *   "dialog1": "Olá, aventureiro! Como posso ajudar?",
+ *   "options": [
+ *     {"value": "Conte-me sobre o jogo.", "next": "dialog2"},
+ *     {"value": "Obrigado, até mais.", "next": "close"}
+ *   ],
+ *   "dialog2": "Este é um jogo incrível desenvolvido em JavaScript.",
+ *   "options2": [
+ *     {"value": "Entendi, obrigado.", "next": "close"}
+ *   ]
+ * }
+ * 
+ * Após editar o JSON, o NPC poderá ser chamado com speak('NovoNPC').
+ */
+
 const npc_name = document.getElementById('npc_name');
 const npc_text = document.getElementById('npc_text');
 const win_dialog_opt_npc = document.getElementById('win_dialog_opt_npc');
@@ -8,6 +39,7 @@ const jsonUrl = "config/npc_dialogs.json";
 
 var resp;
 var selectedNPCInfo;
+var currentDialogNum = 1;
 
 fetchJSON('');
 
@@ -46,6 +78,7 @@ function speak(npc) {
       WinNpcOpen = win_dialog_opt_npc.classList.contains("hide");
       if (WinNpcOpen) {
         win_dialog_opt_npc.classList.remove('hide');
+        currentDialogNum = 1;
         npc_name.innerHTML = selectedNPCInfo.name;
         npc_text.innerHTML = selectedNPCInfo.dialog1;
         selectedNPCInfo.options.forEach((option, index) => {
@@ -64,11 +97,19 @@ function speak(npc) {
       }
     }, 500);
   } else {
-    lbls_opt_npc.innerHTML = '';
-    switch (resp) {
-      case 'Sim, me conte mais sobre o server.':
-        npc_text.innerHTML = selectedNPCInfo.dialog2;
-        selectedNPCInfo.options2.forEach((option, index) => {
+    const currentOptions = selectedNPCInfo['options' + currentDialogNum];
+    const selectedOption = currentOptions.find(opt => opt.value === resp);
+    if (selectedOption) {
+      const next = selectedOption.next;
+      if (next === 'close') {
+        closeDialogOpt();
+      } else if (next.startsWith('dialog')) {
+        const num = parseInt(next.replace('dialog', ''));
+        currentDialogNum = num;
+        npc_text.innerHTML = selectedNPCInfo[next];
+        const nextOptions = selectedNPCInfo['options' + num];
+        lbls_opt_npc.innerHTML = '';
+        nextOptions.forEach((option, index) => {
           lbls_opt_npc.innerHTML += `
           <label class='selectAlt'>${option.value}
             <input type='radio' id='NPC_dialog' name='NPC_dialog' value='${option.value}'>
@@ -78,29 +119,16 @@ function speak(npc) {
           </label>`
           if (index === 0) {
             const first = document.getElementById("NPC_dialog");
-            first.setAttribute("checked", "checked");
+            if (first) first.setAttribute("checked", "checked");
           }
         });
-        break;
-
-      case 'Uau, gostei muito.':
+      } else if (next.startsWith('map:')) {
+        const mapName = next.split(':')[1];
+        generateMapAndNpcs(mapName);
         closeDialogOpt();
-        break;
-
-      case 'Ir para cidade de Prontera.':
-        // generateMapAndNpcs('cid_prontera_centro');
-        closeDialogOpt();
-        break;
-
-      case 'Quero passar pelo tutorial.':
-        generateMapAndNpcs('Tutorial_0_4');
-        closeDialogOpt();
-        break;
-
-      default:
-        closeDialogOpt();
-        break;
+      }
     }
+    lbls_opt_npc.innerHTML = '';
   }
 }
 
@@ -111,6 +139,7 @@ function closeDialogOpt() {
 
 function cleanDialogNPC() {
   resp = null;
+  currentDialogNum = 1;
   npc_name.innerHTML = '';
   npc_text.innerHTML = '';
   lbls_opt_npc.innerHTML = '';

@@ -1,3 +1,35 @@
+/*
+ * Arquivo de configuração e geração de mapas.
+ * 
+ * Para adicionar um novo mapa:
+ * 1. Edite o arquivo config/maps.json.
+ * 2. Adicione uma nova entrada com o nome do mapa como chave.
+ * 3. Defina os campos:
+ *    - background: caminho da imagem de fundo (ex: "./graphics/maps/nome_bg.png")
+ *    - music: caminho do arquivo de música (ex: "audio/musica.mp3")
+ *    - npcs: array de objetos NPC, cada um com:
+ *        - class: classe CSS para o img
+ *        - src: caminho da imagem do NPC
+ *        - onclick: função JavaScript a executar no clique (ex: "speak('NomeNPC')")
+ *        - spanClass: classe CSS para o span associado
+ * 
+ * Exemplo:
+ * "NovoMapa": {
+ *   "background": "./graphics/maps/novo_bg.png",
+ *   "music": "audio/nova_musica.mp3",
+ *   "npcs": [
+ *     {
+ *       "class": "npcConfig novoNpc",
+ *       "src": "graphics/npcs/novo.png",
+ *       "onclick": "speak('NovoNPC')",
+ *       "spanClass": "novoNpc"
+ *     }
+ *   ]
+ * }
+ * 
+ * Após editar o JSON, o mapa estará disponível para uso em generateMapAndNpcs('NovoMapa').
+ */
+
 const currentMap = document.querySelector('.currentMap');
 const containerLogin = document.querySelector('.containerLogin');
 const containerMap = document.querySelector('.containerMap');

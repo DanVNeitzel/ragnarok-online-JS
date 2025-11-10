@@ -5,15 +5,18 @@
     "dialog2": "Servidor Criado em HTML5, CSS3 e Javascript Vanilla. Todo o layout foi desenvolvido na mão sem qualquer utilização de Plugins e APIs.<br><br> Desenvolvido por Daniel Neitzel Vieira.<br> ",
     "options": [
       {
-        "value": "Sim, me conte mais sobre o server."
+        "value": "Sim, me conte mais sobre o server.",
+        "next": "dialog2"
       },
       {
-        "value": "Não, vou continuar minha jornada."
+        "value": "Não, vou continuar minha jornada.",
+        "next": "close"
       }
     ],
     "options2": [
       {
-        "value": "Uau, gostei muito."
+        "value": "Uau, gostei muito.",
+        "next": "close"
       }
     ]
   },
@@ -22,7 +25,8 @@
     "dialog1": "Estamos aqui a serviço do Capitólio de Rune-Midgart.",
     "options": [
       {
-        "value": "Obrigado por seus Serviços."
+        "value": "Obrigado por seus Serviços.",
+        "next": "close"
       }
     ]
   },
@@ -32,15 +36,18 @@
     "dialog2": "Você gostaria de passar pelo tutorial, ou ser redirecionado para cidade de Prontera?<br> ",
     "options": [
       {
-        "value": "Ir para cidade de Prontera."
+        "value": "Ir para cidade de Prontera.",
+        "next": "close"
       },
       {
-        "value": "Quero passar pelo tutorial."
+        "value": "Quero passar pelo tutorial.",
+        "next": "map:Tutorial_0_4"
       }
     ],
     "options2": [
       {
-        "value": "Uau, gostei muito."
+        "value": "Uau, gostei muito.",
+        "next": "close"
       }
     ]
   }
