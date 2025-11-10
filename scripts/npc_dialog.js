@@ -6,23 +6,33 @@
  * 2. Adicione uma nova entrada com o nome do NPC como chave (deve corresponder ao usado em speak('NomeNPC')).
  * 3. Defina os campos:
  *    - name: nome do NPC exibido (ex: "[NomeNPC]")
- *    - dialog1: texto do primeiro diálogo (pode usar <br> para quebras de linha)
- *    - options: array de objetos com "value" (texto da opção) e "next" (ação: "close", "dialog2", "map:NomeMapa")
- *    - dialog2 (opcional): texto do segundo diálogo
- *    - options2 (opcional): array similar para o segundo diálogo
- *    - Pode adicionar dialog3, options3, etc., quantos níveis quiser
+ *    - dialogues: array de objetos de diálogo
+ *      - id: identificador único do diálogo (ex: "start", "info")
+ *      - text: texto do diálogo (pode usar <br> para quebras de linha)
+ *      - options: array de objetos de opção
+ *        - text: texto da opção
+ *        - next: id do próximo diálogo (opcional, se não houver, deve ter action)
+ *        - action: ação a executar (ex: "close", "map:NomeMapa")
  * 
  * Exemplo:
  * "NovoNPC": {
  *   "name": "[Novo NPC]",
- *   "dialog1": "Olá, aventureiro! Como posso ajudar?",
- *   "options": [
- *     {"value": "Conte-me sobre o jogo.", "next": "dialog2"},
- *     {"value": "Obrigado, até mais.", "next": "close"}
- *   ],
- *   "dialog2": "Este é um jogo incrível desenvolvido em JavaScript.",
- *   "options2": [
- *     {"value": "Entendi, obrigado.", "next": "close"}
+ *   "dialogues": [
+ *     {
+ *       "id": "start",
+ *       "text": "Olá, aventureiro!",
+ *       "options": [
+ *         {"text": "Falar", "next": "talk"},
+ *         {"text": "Sair", "action": "close"}
+ *       ]
+ *     },
+ *     {
+ *       "id": "talk",
+ *       "text": "Aqui vai a conversa.",
+ *       "options": [
+ *         {"text": "Ok", "action": "close"}
+ *       ]
+ *     }
  *   ]
  * }
  * 
@@ -34,59 +44,75 @@ const npc_text = document.getElementById('npc_text');
 const win_dialog_opt_npc = document.getElementById('win_dialog_opt_npc');
 const win_options_npc = document.querySelector('.win_options_npc');
 const win_dialog_npc = document.querySelector('.win_dialog_npc');
+const lbls_opt_npc = document.getElementById('lbls_opt_npc');
 
-const jsonUrl = "config/npc_dialogs.json";
+const jsonUrl = "./config/npc_dialogs.json";
 
-var resp;
+var respNPC;
 var selectedNPCInfo;
-var currentDialogNum = 1;
+var currentDialogueId;
 
 fetchJSON('');
 
 async function fetchJSON(npcSelected) {
 
   try {
+    console.log("Tentando carregar JSON para NPC:", npcSelected);
     // Fetch do JSON
     const response = await fetch(jsonUrl);
 
     // Verifica se a resposta foi bem-sucedida (status 200 OK)
+    console.log("Fetch response status:", response.status);
     if (!response.ok) {
       throw new Error(`Erro ao obter o JSON. Status: ${response.status}`);
     }
 
     // Converte a resposta para JSON
     const NPC_Info = await response.json();
-    // console.log(NPC_Info);
+    console.log("JSON carregado com sucesso:", NPC_Info);
 
     // Verifica se a propriedade npcSelected existe no objeto NPC_Info
     if (NPC_Info.hasOwnProperty(npcSelected)) {
       selectedNPCInfo = NPC_Info[npcSelected];
-      // console.log(selectedNPCInfo);
+      console.log("NPC encontrado:", selectedNPCInfo);
     } else {
       console.warn('O NPC não foi encontrado na base. Carregado base padrão.');
+      selectedNPCInfo = null;
     }
 
   } catch (error) {
     console.error("Erro ao processar o JSON:", error);
+    selectedNPCInfo = null;
   }
 }
 
 function speak(npc) {
-  if (!resp) {
-    fetchJSON(npc);
-    setTimeout(() => {
+  console.log("speak chamado com npc:", npc, "respNPC:", respNPC, "selectedNPCInfo:", selectedNPCInfo);
+  if (!respNPC) {
+    fetchJSON(npc).then(() => {
+      if (!selectedNPCInfo || !selectedNPCInfo.dialogues) {
+        console.error("Erro: Dados do NPC não carregados ou inválidos para", npc);
+        return;
+      }
       WinNpcOpen = win_dialog_opt_npc.classList.contains("hide");
       if (WinNpcOpen) {
         win_dialog_opt_npc.classList.remove('hide');
-        currentDialogNum = 1;
+        currentDialogueId = 'start';
+        const dialogue = selectedNPCInfo.dialogues.find(d => d.id === currentDialogueId);
+        if (!dialogue) {
+          console.error("Erro: Diálogo 'start' não encontrado para", npc);
+          closeDialogOpt();
+          return;
+        }
         npc_name.innerHTML = selectedNPCInfo.name;
-        npc_text.innerHTML = selectedNPCInfo.dialog1;
-        selectedNPCInfo.options.forEach((option, index) => {
+        npc_text.innerHTML = dialogue.text;
+        lbls_opt_npc.innerHTML = '';
+        dialogue.options.forEach((option, index) => {
           lbls_opt_npc.innerHTML += `
-      <label class='selectAlt'>${option.value}
-        <input type='radio' id='NPC_dialog' name='NPC_dialog' value='${option.value}'>
+      <label class='selectAlt'>${option.text}
+        <input type='radio' id='NPC_dialog' name='npc_option' value='${option.text}'>
         <span class='checkmark'>
-          <span></span>${option.value}
+          <span></span>${option.text}
         </span>
       </label>`
           if (index === 0) {
@@ -95,26 +121,46 @@ function speak(npc) {
           }
         });
       }
-    }, 500);
+    }).catch(error => {
+      console.error("Erro ao carregar dados do NPC:", error);
+    });
   } else {
-    const currentOptions = selectedNPCInfo['options' + currentDialogNum];
-    const selectedOption = currentOptions.find(opt => opt.value === resp);
+    if (!selectedNPCInfo || !selectedNPCInfo.dialogues) {
+      console.error("Erro: Dados do NPC não disponíveis");
+      return;
+    }
+    const currentDialogue = selectedNPCInfo.dialogues.find(d => d.id === currentDialogueId);
+    if (!currentDialogue) {
+      console.error("Erro: Diálogo atual não encontrado");
+      closeDialogOpt();
+      return;
+    }
+    const selectedOption = currentDialogue.options.find(opt => opt.text === respNPC);
     if (selectedOption) {
-      const next = selectedOption.next;
-      if (next === 'close') {
-        closeDialogOpt();
-      } else if (next.startsWith('dialog')) {
-        const num = parseInt(next.replace('dialog', ''));
-        currentDialogNum = num;
-        npc_text.innerHTML = selectedNPCInfo[next];
-        const nextOptions = selectedNPCInfo['options' + num];
+      if (selectedOption.action) {
+        if (selectedOption.action === 'close') {
+          closeDialogOpt();
+        } else if (selectedOption.action.startsWith('map:')) {
+          const mapName = selectedOption.action.split(':')[1];
+          generateMapAndNpcs(mapName);
+          closeDialogOpt();
+        }
+      } else if (selectedOption.next) {
+        currentDialogueId = selectedOption.next;
+        const nextDialogue = selectedNPCInfo.dialogues.find(d => d.id === currentDialogueId);
+        if (!nextDialogue) {
+          console.error("Erro: Próximo diálogo não encontrado:", selectedOption.next);
+          closeDialogOpt();
+          return;
+        }
+        npc_text.innerHTML = nextDialogue.text;
         lbls_opt_npc.innerHTML = '';
-        nextOptions.forEach((option, index) => {
+        nextDialogue.options.forEach((option, index) => {
           lbls_opt_npc.innerHTML += `
-          <label class='selectAlt'>${option.value}
-            <input type='radio' id='NPC_dialog' name='NPC_dialog' value='${option.value}'>
+          <label class='selectAlt'>${option.text}
+            <input type='radio' id='NPC_dialog' name='NPC_dialog' value='${option.text}'>
             <span class='checkmark'>
-              <span></span>${option.value}
+              <span></span>${option.text}
             </span>
           </label>`
           if (index === 0) {
@@ -122,13 +168,11 @@ function speak(npc) {
             if (first) first.setAttribute("checked", "checked");
           }
         });
-      } else if (next.startsWith('map:')) {
-        const mapName = next.split(':')[1];
-        generateMapAndNpcs(mapName);
+      } else {
+        // Se não tiver action nem next, fecha o modal
         closeDialogOpt();
       }
     }
-    lbls_opt_npc.innerHTML = '';
   }
 }
 
@@ -138,8 +182,7 @@ function closeDialogOpt() {
 }
 
 function cleanDialogNPC() {
-  resp = null;
-  currentDialogNum = 1;
+  respNPC = null;
   npc_name.innerHTML = '';
   npc_text.innerHTML = '';
   lbls_opt_npc.innerHTML = '';
@@ -150,13 +193,26 @@ function cleanDialogNPC() {
 }
 
 function optDialogNPC() {
-  const items = document.getElementsByName('NPC_dialog');
+  console.log("optDialogNPC chamado, selectedNPCInfo:", selectedNPCInfo);
+  if (!selectedNPCInfo) {
+    console.warn("Aguardando carregamento dos dados do NPC...");
+    return;
+  }
+  const items = document.getElementsByName('npc_option');
+  console.log("Encontrados", items.length, "items com name='npc_option'");
+  if (items.length === 0) {
+    console.warn("Nenhuma opção disponível, fechando modal");
+    closeDialogOpt();
+    return;
+  }
   for (var i = 0; i < items.length; i++) {
+    console.log("Item", i, "value:", items[i].value, "checked:", items[i].checked);
     if (items[i].checked) {
-      resp = items[i].value;
+      respNPC = items[i].value;
+      console.log("respNPC setado para:", respNPC);
       speak();
     }
   }
 
-  // console.log(resp);
+  // console.log(respNPC);
 }

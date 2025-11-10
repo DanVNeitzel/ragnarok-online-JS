@@ -1,53 +1,122 @@
 {
   "Sprakki": {
     "name": "[Sprakki]",
-    "dialog1": "Olá! Bem vindo ao mundo de Ragnarok JS.<br> Meu nome é Sprakki e eu estou aqui encarregada de dar a você o guia basico sobre o jogo.",
-    "dialog2": "Servidor Criado em HTML5, CSS3 e Javascript Vanilla. Todo o layout foi desenvolvido na mão sem qualquer utilização de Plugins e APIs.<br><br> Desenvolvido por Daniel Neitzel Vieira.<br> ",
-    "options": [
+    "dialogues": [
       {
-        "value": "Sim, me conte mais sobre o server.",
-        "next": "dialog2"
+        "id": "start",
+        "text": "Olá! Bem vindo ao mundo de Ragnarok JS.<br> Meu nome é Sprakki e eu estou aqui encarregada de dar a você o guia basico sobre o jogo.",
+        "options": [
+          {
+            "text": "Sim, me conte mais sobre o server.",
+            "next": "info"
+          },
+          {
+            "text": "Não, vou continuar minha jornada.",
+            "action": "close"
+          }
+        ]
       },
       {
-        "value": "Não, vou continuar minha jornada.",
-        "next": "close"
-      }
-    ],
-    "options2": [
-      {
-        "value": "Uau, gostei muito.",
-        "next": "close"
+        "id": "info",
+        "text": "Servidor Criado em HTML5, CSS3 e Javascript Vanilla. Todo o layout foi desenvolvido na mão sem qualquer utilização de Plugins e APIs.<br><br> Desenvolvido por Daniel Neitzel Vieira.<br> ",
+        "options": [
+          {
+            "text": "Uau, gostei muito.",
+            "action": "close"
+          }
+        ]
       }
     ]
   },
   "Guard_0_2": {
     "name": "[Guarda do Castelo]",
-    "dialog1": "Estamos aqui a serviço do Capitólio de Rune-Midgart.",
-    "options": [
+    "dialogues": [
       {
-        "value": "Obrigado por seus Serviços.",
-        "next": "close"
+        "id": "start",
+        "text": "Estamos aqui a serviço do Capitólio de Rune-Midgart.",
+        "options": [
+          {
+            "text": "Obrigado por seus Serviços.",
+            "action": "close"
+          }
+        ]
       }
     ]
   },
   "instructor_0_3": {
     "name": "[Instrutor]",
-    "dialog1": "Seja muito bem-vindo, estou aqui para auxiliar na suas decisões para definir qual classe você se encaixaria melhor.",
-    "dialog2": "Você gostaria de passar pelo tutorial, ou ser redirecionado para cidade de Prontera?<br> ",
-    "options": [
+    "dialogues": [
       {
-        "value": "Ir para cidade de Prontera.",
-        "next": "close"
+        "id": "start",
+        "text": "Seja muito bem-vindo, estou aqui para auxiliar na suas decisões para definir qual classe você se encaixaria melhor.",
+        "options": [
+          {
+            "text": "Ir para cidade de Prontera.",
+            "action": "close"
+          },
+          {
+            "text": "Quero passar pelo tutorial.",
+            "action": "map:Tutorial_0_4"
+          }
+        ]
+      }
+    ]
+  },
+  "instructor_0_4": {
+    "name": "[Instrutor]",
+    "dialogues": [
+      {
+        "id": "start",
+        "text": "Parabéns! Você completou o tutorial básico.<br>Agora você está pronto para explorar o mundo de Ragnarok.",
+        "options": [
+          {
+            "text": "Obrigado pelo tutorial!",
+            "action": "close"
+          }
+        ]
+      }
+    ]
+  },
+  "ExemploNPC": {
+    "name": "[NPC de Exemplo]",
+    "dialogues": [
+      {
+        "id": "start",
+        "text": "Olá, aventureiro! Bem-vindo ao jogo.<br>Como posso ajudar?",
+        "options": [
+          {
+            "text": "Conte-me mais sobre o jogo.",
+            "next": "info"
+          },
+          {
+            "text": "Obrigado, até mais.",
+            "action": "close"
+          }
+        ]
       },
       {
-        "value": "Quero passar pelo tutorial.",
-        "next": "map:Tutorial_0_4"
-      }
-    ],
-    "options2": [
+        "id": "info",
+        "text": "Este é um exemplo de diálogo com múltiplas opções.<br>Você pode escolher continuar ou encerrar.",
+        "options": [
+          {
+            "text": "Quero saber mais ainda.",
+            "next": "more"
+          },
+          {
+            "text": "Já entendi, obrigado.",
+            "action": "close"
+          }
+        ]
+      },
       {
-        "value": "Uau, gostei muito.",
-        "next": "close"
+        "id": "more",
+        "text": "Aqui vai mais informação.<br>Obrigado por testar!",
+        "options": [
+          {
+            "text": "Foi útil, obrigado!",
+            "action": "close"
+          }
+        ]
       }
     ]
   }
