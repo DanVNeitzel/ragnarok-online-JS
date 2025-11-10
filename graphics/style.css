@@ -1012,21 +1012,41 @@ body {
 }
 
 .bar-exp-base {
-    width: 170px;
+    width: 200px !important;
     height: 5px;
     padding: 0;
-    margin: 2px 2px 2px 20px;
-    background-color: #7B96CE;
+    margin: 0 0 0 15px;
+    background-color: #939393;
+    display: inline-flex;
+    transition: all 1s;
+}
+
+.bar-exp-base-current {
+    width: 50%;
+    height: 5px;
+    padding: 0;
+    margin: 0;
+    background-color: #537cce;
     display: inline-flex;
     transition: all 1s;
 }
 
 .bar-exp-class {
-    width: 170px;
+    width: 200px !important;
     height: 5px;
     padding: 0;
-    margin: 2px 2px 2px 20px;
-    background-color: #7B96CE;
+    margin: 0 0 0 7px;
+    background-color: #939393;
+    display: inline-flex;
+    transition: all 1s;
+}
+
+.bar-exp-class-current {
+    width: 50%;
+    height: 5px;
+    padding: 0;
+    margin: 0;
+    background-color: #537cce;
     display: inline-flex;
     transition: all 1s;
 }
@@ -1180,11 +1200,6 @@ body {
     color: #f70000;
 }
 
-.live-chat>.msg_player {
-    color: #fff;
-    font-variant-emoji: none;
-}
-
 /* =================================== */
 
 .btn_chat.active {
@@ -1300,6 +1315,22 @@ body {
 }
 
 @-webkit-keyframes hideMap {
+    from {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        display: none;
+        position: absolute;
+        opacity: 0;
+    }
+}
+
+@keyframes hideMap {
     from {
         opacity: 1;
     }
