@@ -151,6 +151,7 @@ function createNewPlayer() {
     userData[0].slots = userData[0].slots.filter(slot => slot.stats == "active");
     verifyEmptySlot();
     loadCharSlots();
+    localStorage.setItem(username, JSON.stringify(userData));
     cmd('fecharcriarPlayer');
   }
 }

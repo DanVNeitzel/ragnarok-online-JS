@@ -1,0 +1,18 @@
+[
+    {
+        "username": "teste",
+        "password": "teste",
+        "auth_server": "premium",
+        "slots": [
+            {
+                "stats": "empty"
+            },
+            {
+                "stats": "empty"
+            },
+            {
+                "stats": "empty"
+            }
+        ]
+    }
+]

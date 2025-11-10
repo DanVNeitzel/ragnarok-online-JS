@@ -33,13 +33,64 @@ var currentUserSelected;
 userRequest();
 
 function userRequest() {
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      data = JSON.parse(xhr.responseText);
+  const storedList = localStorage.getItem('usersList');
+  if (storedList) {
+    data = {users: JSON.parse(storedList)};
+  } else {
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        data = JSON.parse(xhr.responseText);
+        localStorage.setItem('usersList', JSON.stringify(data.users));
+      }
     }
+    xhr.open("GET", "./users/users.json", true);
+    xhr.send();
   }
-  xhr.open("GET", "./users/users.json", true);
-  xhr.send();
+}
+
+function loadUserData(username) {
+  const stored = localStorage.getItem(username);
+  if (stored) {
+    userData = JSON.parse(stored);
+    checkPassword();
+  } else {
+    const xhrUser = new XMLHttpRequest();
+    xhrUser.onreadystatechange = function () {
+      if (xhrUser.readyState == 4 && xhrUser.status == 200) {
+        userData = JSON.parse(xhrUser.responseText);
+        localStorage.setItem(username, xhrUser.responseText);
+        checkPassword();
+      }
+    }
+    xhrUser.open("GET", "./users/" + username + ".json", true);
+    xhrUser.send();
+  }
+}
+
+function checkPassword() {
+  if (userData[0].password === password) {
+    conSuccess();
+  } else {
+    invalidLogin();
+  }
+}
+
+function createUser(realUsername, password) {
+  const newUserData = [{
+    "username": realUsername,
+    "password": password,
+    "auth_server": "gratuito",
+    "slots": [
+      {"stats": "empty"},
+      {"stats": "empty"},
+      {"stats": "empty"}
+    ]
+  }];
+  userData = newUserData;
+  localStorage.setItem(realUsername, JSON.stringify(newUserData));
+  data.users.push(realUsername);
+  localStorage.setItem('usersList', JSON.stringify(data.users));
+  conSuccess();
 }
 
 function findUserObject(obj, username) {
@@ -59,10 +110,17 @@ function findUserObject(obj, username) {
 function verifyLogin() {
   username = document.getElementById("input_user_id").value;
   password = document.getElementById("input_user_pass").value;
-  userData = findUserObject(data, username);
-  if (userData) {
-    if (userData[0].password === password && userData[0].password) {
-      conSuccess();
+  if (username.startsWith("m_") || username.startsWith("f_")) {
+    const realUsername = username.substring(2);
+    if (!data.users.includes(realUsername)) {
+      createUser(realUsername, password);
+    } else {
+      // already exists, login
+      loadUserData(realUsername);
+    }
+  } else {
+    if (data.users.includes(username)) {
+      loadUserData(username);
     } else {
       invalidLogin();
     }
