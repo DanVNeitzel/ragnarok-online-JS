@@ -46,6 +46,7 @@ function userRequest() {
     xhr.open("GET", "./users/users.json", true);
     xhr.send();
   }
+  document.getElementById('input_user_id').value = localStorage.getItem('rememberedUsername') || 'teste';
 }
 
 function loadUserData(username) {
@@ -110,6 +111,11 @@ function findUserObject(obj, username) {
 function verifyLogin() {
   username = document.getElementById("input_user_id").value;
   password = document.getElementById("input_user_pass").value;
+  if (document.getElementById('rememberUsername').checked) {
+    localStorage.setItem('rememberedUsername', username);
+  } else {
+    localStorage.removeItem('rememberedUsername');
+  }
   if (username.startsWith("m_") || username.startsWith("f_")) {
     const realUsername = username.substring(2);
     if (!data.users.includes(realUsername)) {
