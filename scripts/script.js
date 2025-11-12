@@ -12,6 +12,7 @@ const win_confirm_exit = document.getElementById('win_confirm_exit');
 const win_select_player = document.getElementById('win_select_player');
 const win_make_player = document.getElementById('win_make_player');
 const win_skills_player = document.getElementById('win_skills_player');
+const win_options_player = document.getElementById('win_options_player');
 
 const block_login_form = document.getElementById('block_login_form');
 
@@ -171,6 +172,15 @@ function cmd(selected) {
 
         case 'fecharWinSkillsPlayer':
             win_skills_player.classList.add('hide');
+            break;
+
+        case 'abrirWinOptionsPlayer':
+            win_options_player.style.zIndex = 1;
+            win_options_player.classList.remove('hide');
+            break;
+
+        case 'fecharWinOptionsPlayer':
+            win_options_player.classList.add('hide');
             break;
 
         default:

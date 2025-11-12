@@ -137,7 +137,7 @@ function createNewPlayer() {
     };
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "../api/create_character.php", true);
+    xhr.open("POST", "./api/create_character.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
@@ -163,11 +163,11 @@ function validatePlayer() {
   if (NewNameChar.value !== '' || NewNameChar.value !== null || NewNameChar.value !== undefined) {
     if (NewNameChar.value.length >= 6 && NewNameChar.value.length <= 13) {
       return true;
-    }else{
+    } else {
       showErrorMessage('numberCharName');
       return false;
     }
-  }else{
+  } else {
     showErrorMessage('validCharName');
     return false;
   }

@@ -61,6 +61,10 @@ function generateMapAndNpcs(mapName) {
     containerMap.classList.remove('hide');
     currentplayerMap = mapName;
     onMap = true;
+    if (currentUserSelected) {
+      currentUserSelected.map = mapName;
+      saveCharacterData();
+    }
     if (verifySoundMap(soundGame.src) !== mapData.music) {
       soundGame.volume = 0.1;
       soundGame.src = mapData.music;
@@ -86,5 +90,35 @@ function verifySoundMap(soundPath) {
 
   } else {
     console.error("Erro ao validar o audio.");
+  }
+}
+
+function saveCharacterData() {
+  if (currentUserSelected && username) {
+    // Find the slot index
+    let slotIndex = -1;
+    for (let i = 0; i < userData[0].slots.length; i++) {
+      if (userData[0].slots[i].name === currentUserSelected.name) {
+        slotIndex = i;
+        break;
+      }
+    }
+    if (slotIndex !== -1) {
+      userData[0].slots[slotIndex] = currentUserSelected;
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "./api/save_character.php", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          const response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            localStorage.setItem(username, JSON.stringify(userData));
+          } else {
+            console.error("Erro ao salvar dados do personagem:", response.error);
+          }
+        }
+      };
+      xhr.send(JSON.stringify({ username: username, userData: userData }));
+    }
   }
 }

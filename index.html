@@ -39,7 +39,7 @@
               <h1 class="text-input">Usuário</h1>
             </div>
             <div>
-              <input onclick="clickInput('id')" type="text" value="teste" name="input_user_id" id="input_user_id">
+              <input onclick="clickInput('id')" type="text" value="" name="input_user_id" id="input_user_id">
               <label><input type="checkbox" id="rememberUsername" checked> Manter usuário</label>
             </div>
           </div>
@@ -48,7 +48,7 @@
               <h1 class="text-input">Senha</h1>
             </div>
             <div>
-              <input onclick="clickInput('pass')" type="password" value="teste" name="input_user_pass"
+              <input onclick="clickInput('pass')" type="password" value="" name="input_user_pass"
                 id="input_user_pass">
             </div>
           </div>
@@ -353,7 +353,7 @@
         <button class="btn_menu_player">grupo</button>
         <button class="btn_menu_player">clã</button>
         <button class="btn_menu_player">quest</button>
-        <button class="btn_menu_player">opções</button>
+        <button onclick="cmd('abrirWinOptionsPlayer')" class="btn_menu_player">opções</button>
       </div>
       <div id="win_dialog_opt_npc" class="hide">
         <div class="win_dialog_npc draggable">
@@ -385,6 +385,22 @@
           <span id="habilityPoints" class="habilityPoints"> Pontos de Habilidade: 0</span>
           <button class="btn btn_ok" onclick="cmd('confirmarHabilidades')"></button>
           <button class="btn btn_cancel" onclick="cmd('fecharWinSkillsPlayer')"></button>
+        </div>
+      </div>
+      <div id="win_options_player" class="block_default block_options_player hide" style="z-index: 1;">
+        <div class="default_header">
+          <span class="orb_blue"></span>
+          <p>Janela de configurações</p>
+        </div>
+        <div class="default_body h_xl">
+          <div class="option_frame">
+            <button class="btn btn_full btn_border btn_sel_personagem">Selecionar Personagem</button>
+            <button class="btn btn_full btn_border btn_config_video">Configurações de Video</button>
+            <button class="btn btn_full btn_border btn_config_audio">Configurações de Audio</button>
+            <button class="btn btn_full btn_border btn_config_atalhos">Configurações de Atalho</button>
+            <button class="btn btn_full btn_border btn_sair_jogo">Sair do Jogo</button>
+            <button class="btn btn_full btn_border btn_continuar_jogo">Continuar a Jogar</button>
+          </div>
         </div>
       </div>
     </div>

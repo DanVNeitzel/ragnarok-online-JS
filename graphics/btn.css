@@ -5,6 +5,14 @@
   margin: 0 10px 0 0;
 }
 
+.btn_full {
+  width: 100%;
+}
+
+.btn_border {
+  
+}
+
 .btn_back {
   background: url(buttons/btn_back.gif);
   background-repeat: no-repeat;
@@ -147,4 +155,10 @@
   background: url(buttons/btn_ok_dis.gif);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+/* CUSTOM BTN CONFIG */
+
+.btn_config_video{
+
 }
