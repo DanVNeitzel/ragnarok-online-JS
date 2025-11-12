@@ -126,33 +126,36 @@ function createNewPlayer() {
   var status = validatePlayer();
   if (status) {
     const newUser = {
-      "stats": "active",
       "name": NewNameChar.value,
       "hair": "aprendiz_" + styleNumDefault,
-      "class": "Aprendiz",
-      "zeny": 0,
-      "map": "Tutorial_0_1",
-      "level": 1,
-      "experience": 0,
-      "weight": 0,
-      "hp": 100,
-      "sp": 75,
       "for": default_stats.for,
       "agi": default_stats.agi,
       "vit": default_stats.vit,
       "int": default_stats.int,
       "des": default_stats.des,
       "sor": default_stats.sor
-    }
+    };
 
-    console.log(newUser);
-    console.log(userData[0].slots);
-    userData[0].slots.push(newUser);
-    userData[0].slots = userData[0].slots.filter(slot => slot.stats == "active");
-    verifyEmptySlot();
-    loadCharSlots();
-    localStorage.setItem(username, JSON.stringify(userData));
-    cmd('fecharcriarPlayer');
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "../api/create_character.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          const response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            userData = response.data;
+            loadCharSlots();
+            cmd('fecharcriarPlayer');
+          } else {
+            showErrorMessage('Erro ao criar personagem: ' + response.error);
+          }
+        } else {
+          showErrorMessage('Erro de conexão');
+        }
+      }
+    };
+    xhr.send(JSON.stringify({ username: username, character: newUser }));
   }
 }
 

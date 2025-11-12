@@ -111,26 +111,34 @@ function findUserObject(obj, username) {
 function verifyLogin() {
   username = document.getElementById("input_user_id").value;
   password = document.getElementById("input_user_pass").value;
+  const world = document.querySelector('input[name="world"]:checked').value;
+
   if (document.getElementById('rememberUsername').checked) {
     localStorage.setItem('rememberedUsername', username);
   } else {
     localStorage.removeItem('rememberedUsername');
   }
-  if (username.startsWith("m_") || username.startsWith("f_")) {
-    const realUsername = username.substring(2);
-    if (!data.users.includes(realUsername)) {
-      createUser(realUsername, password);
-    } else {
-      // already exists, login
-      loadUserData(realUsername);
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "./api/login.php", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        const response = JSON.parse(xhr.responseText);
+        if (response.success) {
+          userData = response.data;
+          username = response.user;
+          conSuccess();
+        } else {
+          invalidLogin();
+        }
+      } else {
+        invalidLogin();
+      }
     }
-  } else {
-    if (data.users.includes(username)) {
-      loadUserData(username);
-    } else {
-      invalidLogin();
-    }
-  }
+  };
+  xhr.send(JSON.stringify({ username: username, password: password, world: world }));
 }
 
 function selectChar(selected) {
