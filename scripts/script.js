@@ -33,6 +33,8 @@ const block_news = document.querySelector('.block_news');
 
 var statusLoading = false;
 
+var inMap = false;
+
 var music_temp = '';
 var effect_temp = '';
 
@@ -132,19 +134,33 @@ function cmd(selected) {
                 title_msg_error.innerHTML = 'Mensagem';
                 text_msg_error.innerHTML = 'Você não tem permissão pra entrar nesse mundo.';
             }
+
             break;
 
         case 'selectedPlayerChar':
-            loadingScreen();
-            var id = setInterval(loadVerify, 1000);
-            function loadVerify() {
-                if (statusLoading) {
-                    statusLoading = false;
-                    clearInterval(id);
-                    loadPlayerInfo();
-                    generateMapAndNpcs(currentUserSelected.map);
-                } else {
-                    console.warn('loading em andamento');
+            if (inMap === true) {
+                console.log('voltando para selecionar personagem...');
+                inMap = false;
+                removeMapAndNpcs();
+                showLoginScreen();
+                containerMap.classList.add('hide');
+                containerLogin.classList.remove('hide');
+                win_options_player.classList.add('hide');
+                temp_select_char = currentUserSelected.name;
+                currentUserSelected = null;
+            } else {
+                loadingScreen();
+                var id = setInterval(loadVerify, 1000);
+                function loadVerify() {
+                    if (statusLoading) {
+                        statusLoading = false;
+                        clearInterval(id);
+                        loadPlayerInfo();
+                        generateMapAndNpcs(currentUserSelected.map);
+                        inMap = true;
+                    } else {
+                        console.warn('loading em andamento');
+                    }
                 }
             }
             break;

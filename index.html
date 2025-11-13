@@ -48,8 +48,7 @@
               <h1 class="text-input">Senha</h1>
             </div>
             <div>
-              <input onclick="clickInput('pass')" type="password" value="" name="input_user_pass"
-                id="input_user_pass">
+              <input onclick="clickInput('pass')" type="password" value="" name="input_user_pass" id="input_user_pass">
             </div>
           </div>
         </div>
@@ -244,22 +243,6 @@
       </div>
     </div>
 
-    <div id="win_confirm_exit" class="block_default block_global_msg hide draggable">
-      <div class="default_header">
-        <span class="orb_blue"></span>
-        <p>Mensagem</p>
-      </div>
-      <div class="default_body">
-        <div class="block_message">
-          <p>Deseja fechar o jogo ?</p>
-        </div>
-      </div>
-      <div class="default_footer">
-        <button class="btn btn_ok click-effect-login" onclick="cmd('resetPage')"></button>
-        <button class="btn btn_cancel click-effect-login" onclick="cmd('closeConfirmExit')"></button>
-      </div>
-    </div>
-
     <div class="block_default block_news hide">
       <div class="default_header">
         <span class="orb_blue"></span>
@@ -394,15 +377,33 @@
         </div>
         <div class="default_body h_xl">
           <div class="option_frame">
-            <button class="btn btn_full btn_alt_default">Selecionar Personagem</button>
+            <button class="btn btn_full btn_alt_default" onclick="cmd('selectedPlayerChar')">Selecionar
+              Personagem</button>
             <button class="btn btn_full btn_alt_default">Configurações de Video</button>
             <button class="btn btn_full btn_alt_default">Configurações de Audio</button>
             <button class="btn btn_full btn_alt_default">Configurações de Atalho</button>
-            <button class="btn btn_full btn_alt_default">Sair do Jogo</button>
-            <button class="btn btn_full btn_alt_default" onclick="cmd('fecharWinOptionsPlayer')">Continuar a Jogar</button>
+            <button class="btn btn_full btn_alt_default" onclick="cmd('exitGame')">Sair do Jogo</button>
+            <button class="btn btn_full btn_alt_default" onclick="cmd('fecharWinOptionsPlayer')">Continuar a
+              Jogar</button>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div id="win_confirm_exit" class="block_default block_global_msg hide draggable">
+    <div class="default_header">
+      <span class="orb_blue"></span>
+      <p>Mensagem</p>
+    </div>
+    <div class="default_body">
+      <div class="block_message">
+        <p>Deseja fechar o jogo ?</p>
+      </div>
+    </div>
+    <div class="default_footer">
+      <button class="btn btn_ok click-effect-login" onclick="cmd('resetPage')"></button>
+      <button class="btn btn_cancel click-effect-login" onclick="cmd('closeConfirmExit')"></button>
     </div>
   </div>
 

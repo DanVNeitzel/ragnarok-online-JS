@@ -1,0 +1,50 @@
+[
+    {
+        "username": "admin",
+        "password": "admin",
+        "auth_server": "premium",
+        "slots": [
+            {
+                "stats": "active",
+                "name": "admin123",
+                "hair": "aprendiz_4",
+                "class": "Aprendiz",
+                "zeny": 0,
+                "map": "Tutorial_0_3",
+                "level": 1,
+                "experience": 0,
+                "weight": 0,
+                "hp": 100,
+                "sp": 75,
+                "for": 9,
+                "agi": 1,
+                "vit": 9,
+                "int": 1,
+                "des": 9,
+                "sor": 1
+            },
+            {
+                "stats": "active",
+                "name": "teste123",
+                "hair": "aprendiz_4",
+                "class": "Aprendiz",
+                "zeny": 0,
+                "map": "Tutorial_0_4",
+                "level": 1,
+                "experience": 0,
+                "weight": 0,
+                "hp": 100,
+                "sp": 75,
+                "for": 5,
+                "agi": 5,
+                "vit": 5,
+                "int": 5,
+                "des": 5,
+                "sor": 5
+            },
+            {
+                "stats": "empty"
+            }
+        ]
+    }
+]

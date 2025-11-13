@@ -79,6 +79,14 @@ function generateMapAndNpcs(mapName) {
   }
 }
 
+function removeMapAndNpcs() {
+  currentMap.style.backgroundImage = "none";
+  currentMap.innerHTML = '';
+  soundGame.volume = 0.1;
+  soundGame.src = './audio/login_sound.mp3';
+  soundGame.play();
+}
+
 function verifySoundMap(soundPath) {
 
   var soundMatch = soundPath.match(/audio\/.*/);
