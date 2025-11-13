@@ -9,8 +9,15 @@
   width: 100%;
 }
 
-.btn_border {
-  
+.btn_alt_default {
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  margin: 0 0 6px 0;
+}
+
+.btn_alt_default:hover {
+  transition: all 50ms;
+  background-color: #8cabe9;
 }
 
 .btn_back {
@@ -155,10 +162,4 @@
   background: url(buttons/btn_ok_dis.gif);
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-/* CUSTOM BTN CONFIG */
-
-.btn_config_video{
-
 }
