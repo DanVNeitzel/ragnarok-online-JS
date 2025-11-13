@@ -142,12 +142,12 @@ function cmd(selected) {
                 console.log('voltando para selecionar personagem...');
                 inMap = false;
                 removeMapAndNpcs();
-                showLoginScreen();
                 containerMap.classList.add('hide');
                 containerLogin.classList.remove('hide');
                 win_options_player.classList.add('hide');
-                temp_select_char = currentUserSelected.name;
-                currentUserSelected = null;
+                setTimeout(() => {
+                    loadCharSlots();
+                }, 1000);
             } else {
                 loadingScreen();
                 var id = setInterval(loadVerify, 1000);

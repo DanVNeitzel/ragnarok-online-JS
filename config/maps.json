@@ -64,5 +64,29 @@
                 "spanClass": "instructor_0_4"
             }
         ]
+    },
+    "Tutorial_0_5": {
+        "background": "./graphics/maps/tutorial_1_3_0_bg.png",
+        "music": "audio/training_camp.mp3",
+        "npcs": [
+            {
+                "class": "npcConfig instructor_0_5",
+                "src": "graphics/npcs/tutorial_guide_3.png",
+                "onclick": "speak('instructor_0_5')",
+                "spanClass": "instructor_0_5"
+            }
+        ]
+    },
+    "Tutorial_0_6": {
+        "background": "./graphics/maps/tutorial_1_3_1_bg.png",
+        "music": "audio/training_camp.mp3",
+        "npcs": [
+            {
+                "class": "npcConfig instructor_0_6",
+                "src": "graphics/npcs/tutorial_guide_4.png",
+                "onclick": "speak('instructor_0_6')",
+                "spanClass": "instructor_0_6"
+            }
+        ]
     }
 }

@@ -91,6 +91,42 @@
   left: calc(50% - 30px);
 }
 
+.instructor_0_5 {
+  top: calc(50% - 165px);
+  left: calc(50% - -190px);
+}
+
+.instructor_0_5::after {
+  position: absolute;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  content: "Instrutor final";
+  color: #638dfb;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #000;
+  top: calc(50% - 115px);
+  left: calc(50% - -145px);
+}
+
+.instructor_0_6 {
+  top: calc(50% - 160px);
+  left: calc(50% - 300px);
+}
+
+.instructor_0_6::after {
+  position: absolute;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  content: "Instrutor final";
+  color: #638dfb;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: #000;
+  top: calc(50% - 110px);
+  left: calc(50% - 345px);
+}
+
 
 /*------------------> TELEPORTS COORDS */
 

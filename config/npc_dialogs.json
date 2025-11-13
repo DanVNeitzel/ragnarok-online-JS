@@ -70,13 +70,74 @@
         "text": "Parabéns! Você completou o tutorial básico.<br>Agora você está pronto para explorar o mundo de Ragnarok.",
         "options": [
           {
-            "text": "Obrigado pelo tutorial!",
+            "text": "Ir para cidade de Prontera.",
             "action": "close"
+          },
+          {
+            "text": "Quero passar pelo tutorial.",
+            "action": "map:Tutorial_0_5"
           }
         ]
       }
     ]
   },
+  "instructor_0_5": {
+    "name": "[Instrutor]",
+    "dialogues": [
+      {
+        "id": "start",
+        "text": "Excelente! Você concluiu o tutorial avançado.<br>Agora você está preparado para enfrentar desafios maiores no mundo de Ragnarok.",
+        "options": [
+          {
+            "text": "Ir para cidade de Prontera.",
+            "action": "close"
+          },
+          {
+            "text": "Quero passar pelo tutorial.",
+            "action": "map:Tutorial_0_6"
+          }
+        ]
+      }
+    ]
+  },
+  "instructor_0_6": {
+    "name": "[Instrutor]",
+    "dialogues": [
+      {
+        "id": "start",
+        "text": "Parabéns por completar todo o tutorial!<br>Você está pronto para embarcar em sua jornada em Ragnarok.",
+        "options": [
+          {
+            "text": "Ir para cidade de Prontera.",
+            "action": "close"
+          },
+          {
+            "text": "Quero passar pelo tutorial.",
+            "action": "map:Tutorial_0_6"
+          }
+        ]
+      }
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   "ExemploNPC": {
     "name": "[NPC de Exemplo]",
     "dialogues": [
