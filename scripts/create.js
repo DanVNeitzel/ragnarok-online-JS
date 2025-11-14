@@ -18,6 +18,8 @@ const btnAddSor = document.querySelector('.btn-add-sor');
 
 var styleNumDefault = 1;
 
+
+
 let default_stats = {
   for: 5,
   agi: 5,
@@ -137,7 +139,7 @@ function createNewPlayer() {
     };
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "./api/create_character.php", true);
+    xhr.open("POST", apiLink + "create_character.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {

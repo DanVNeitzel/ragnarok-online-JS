@@ -114,7 +114,7 @@ function saveCharacterData() {
     if (slotIndex !== -1) {
       userData[0].slots[slotIndex] = currentUserSelected;
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", "./api/save_character.php", true);
+      xhr.open("POST", apiLink + "save_character.php", true);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {

@@ -120,7 +120,7 @@ function verifyLogin() {
   }
 
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "./api/login.php", true);
+  xhr.open("POST", apiLink + "login.php", true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
