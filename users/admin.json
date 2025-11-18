@@ -6,22 +6,22 @@
         "slots": [
             {
                 "stats": "active",
-                "name": "admin123",
-                "hair": "aprendiz_4",
+                "name": "admin098",
+                "hair": "aprendiz_3",
                 "class": "Aprendiz",
                 "zeny": 0,
-                "map": "Tutorial_0_6",
+                "map": "Tutorial_0_1",
                 "level": 1,
                 "experience": 0,
                 "weight": 0,
                 "hp": 100,
                 "sp": 75,
                 "for": 9,
-                "agi": 1,
-                "vit": 9,
+                "agi": 9,
+                "vit": 1,
                 "int": 1,
-                "des": 9,
-                "sor": 1
+                "des": 1,
+                "sor": 9
             },
             {
                 "stats": "active",

@@ -80,6 +80,18 @@
   background-size: cover;
 }
 
+.btn_delete {
+  background: url(buttons/btn_del.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn_delete:hover {
+  background: url(buttons/btn_del_a.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .btn_exit {
   background: url(buttons/btn_exit.gif);
   background-repeat: no-repeat;

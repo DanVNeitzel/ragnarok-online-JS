@@ -51,6 +51,10 @@ function clickInput(type) {
             input_user_pass.focus();
             break;
 
+        case 'delete_pass':
+            document.getElementById('input_delete_pass').focus();
+            break;
+
         default:
             break;
     }
@@ -200,6 +204,18 @@ function cmd(selected) {
             win_options_player.classList.add('hide');
             break;
 
+        case 'deletePlayerChar':
+            deletePlayerChar();
+            break;
+
+        case 'confirmarDeleteChar':
+            confirmarDeleteChar();
+            break;
+
+        case 'cancelarDeleteChar':
+            cancelarDeleteChar();
+            break;
+
         default:
             break;
     }
@@ -221,6 +237,13 @@ function invalidLogin(type) {
     block_message_login.classList.remove('hide');
     block_login_form.classList.add('hide');
     input_user_pass.value = '';
+}
+
+function showMsgError(title, message) {
+    win_msg_error.style.zIndex = 4;
+    win_msg_error.classList.remove('hide');
+    title_msg_error.innerHTML = title;
+    text_msg_error.innerHTML = message;
 }
 
 function resetMsgError() {
@@ -280,6 +303,19 @@ input_user_pass.onkeydown = function (e) {
         verifyLogin();
     }
 };
+
+// Evento para o input de senha de exclusão
+document.addEventListener('DOMContentLoaded', function() {
+    const inputDeletePass = document.getElementById('input_delete_pass');
+    if (inputDeletePass) {
+        inputDeletePass.onkeydown = function (e) {
+            if (e.key == "Enter") {
+                playbtnEffect();
+                confirmarDeleteChar();
+            }
+        };
+    }
+});
 
 
 function Fullscreen(stats) {

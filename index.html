@@ -189,8 +189,34 @@
       <div class="default_footer">
         <button id="btnNewPlayerChar" class="btn btn_make click-effect-login hide"
           onclick="cmd('newPlayerChar')"></button>
+        <button id="btnDeleteChar" class="btn btn_delete click-effect-login hide"
+          onclick="cmd('deletePlayerChar')"></button>
         <button id="btnSelectedChar" class="btn btn_ok click-effect-login" onclick="cmd('selectedPlayerChar')"></button>
         <button class="btn btn_cancel click-effect-login" onclick="cmd('fecharSelectPlayer')"></button>
+      </div>
+    </div>
+
+    <div id="win_confirm_delete" class="block_default block_global_msg hide draggable">
+      <div class="default_header">
+        <span class="orb_blue"></span>
+        <p>Confirmar Exclusão</p>
+      </div>
+      <div class="default_body h_s">
+        <div class="block_message">
+          <p>Digite sua senha para confirmar a exclusão do personagem <strong><span id="charToDeleteName"></span></strong></p>
+          <div class="row">
+            <div>
+              <h1 class="text-input">Senha</h1>
+            </div>
+            <div>
+              <input onclick="clickInput('delete_pass')" type="password" value="" name="input_delete_pass" id="input_delete_pass">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="default_footer">
+        <button class="btn btn_ok click-effect-login" onclick="cmd('confirmarDeleteChar')"></button>
+        <button class="btn btn_cancel click-effect-login" onclick="cmd('cancelarDeleteChar')"></button>
       </div>
     </div>
 

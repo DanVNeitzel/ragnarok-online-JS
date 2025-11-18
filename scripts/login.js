@@ -241,6 +241,7 @@ function updateStatsValue(userDataSlot) {
     SelectedUserSor.innerHTML = userDataSlot.sor;
     btnNewPlayerChar.classList.add('hide');
     btnSelectedChar.classList.remove('hide');
+    document.getElementById('btnDeleteChar').classList.remove('hide');
     storageData(userDataSlot);
   } else {
     SelectedUserName.innerHTML = '';
@@ -260,6 +261,7 @@ function updateStatsValue(userDataSlot) {
     SelectedUserSor.innerHTML = '';
     btnNewPlayerChar.classList.remove('hide');
     btnSelectedChar.classList.add('hide');
+    document.getElementById('btnDeleteChar').classList.add('hide');
   }
 }
 
@@ -322,3 +324,126 @@ function changeChar(opt) {
   }
 }
 
+// Função para deletar personagem
+function deletePlayerChar() {
+  const selectedSlot = document.querySelector('.char_slot.active');
+  
+  if (!selectedSlot) {
+    showMsgError('Atenção', 'Selecione um personagem para deletar.');
+    return;
+  }
+  
+  const slotId = selectedSlot.id.split('_')[1];
+  const slotIndex = parseInt(slotId) - 1;
+  const charData = userData[0].slots[slotIndex];
+  
+  if (!charData || charData.stats === 'empty') {
+    showMsgError('Erro', 'Nenhum personagem selecionado.');
+    return;
+  }
+  
+  // Armazenar o slot para deletar
+  window.slotToDelete = slotId;
+  
+  // Mostrar nome do personagem na mensagem
+  document.getElementById('charToDeleteName').textContent = charData.name;
+  
+  // Abrir janela de confirmação com z-index maior
+  const confirmDeleteWindow = document.getElementById('win_confirm_delete');
+  confirmDeleteWindow.style.zIndex = 3;
+  confirmDeleteWindow.classList.remove('hide');
+  document.getElementById('input_delete_pass').value = '';
+  document.getElementById('input_delete_pass').focus();
+}
+
+// Função para confirmar delete do personagem
+function confirmarDeleteChar() {
+  const passwordInput = document.getElementById('input_delete_pass').value;
+  
+  if (!passwordInput) {
+    showMsgError('Erro', 'Digite sua senha!');
+    return;
+  }
+  
+  const slotId = window.slotToDelete;
+  
+  // Requisição para deletar personagem no servidor
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", apiLink + "delete_character.php", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        const response = JSON.parse(xhr.responseText);
+        
+        if (response.success) {
+          // Atualizar dados locais
+          const slotIndex = parseInt(slotId) - 1;
+          userData[0].slots[slotIndex] = { stats: 'empty' };
+          
+          // Atualizar localStorage
+          localStorage.setItem(username, JSON.stringify(userData));
+          
+          // Atualizar interface
+          const imgElement = document.getElementById(`imgChar_${slotId}`);
+          if (imgElement) {
+            imgElement.src = '';
+          }
+          
+          // Limpar informações do personagem
+          clearSelectedCharInfo();
+          
+          // Recarregar slots
+          loadCharSlots();
+          
+          // Fechar janela de confirmação
+          cancelarDeleteChar();
+          
+          // Mostrar mensagem de sucesso
+          showMsgError('Sucesso', 'Personagem deletado com sucesso!');
+        } else {
+          showMsgError('Erro', response.message || 'Erro ao deletar personagem.');
+        }
+      } else {
+        showMsgError('Erro', 'Erro ao conectar com o servidor.');
+      }
+    }
+  };
+  
+  xhr.send(JSON.stringify({
+    username: username,
+    password: passwordInput,
+    slot: slotId
+  }));
+}
+
+// Função para cancelar delete
+function cancelarDeleteChar() {
+  const confirmDeleteWindow = document.getElementById('win_confirm_delete');
+  confirmDeleteWindow.classList.add('hide');
+  confirmDeleteWindow.style.zIndex = '';
+  document.getElementById('input_delete_pass').value = '';
+  window.slotToDelete = null;
+}
+
+// Função para limpar informações do personagem selecionado
+function clearSelectedCharInfo() {
+  SelectedUserName.innerHTML = '‎';
+  SelectedUserClass.innerHTML = '‎';
+  SelectedUserNv.innerHTML = '‎';
+  SelectedUserExp.innerHTML = '‎';
+  SelectedUserHP.innerHTML = '‎';
+  SelectedUserSP.innerHTML = '‎';
+  document.getElementById('SelectedUserMap').innerHTML = '‎';
+  SelectedUserFor.innerHTML = '‎';
+  SelectedUserAgi.innerHTML = '‎';
+  SelectedUserVit.innerHTML = '‎';
+  SelectedUserInt.innerHTML = '‎';
+  SelectedUserDes.innerHTML = '‎';
+  SelectedUserSor.innerHTML = '‎';
+  
+  btnNewPlayerChar.classList.remove('hide');
+  btnSelectedChar.classList.add('hide');
+  document.getElementById('btnDeleteChar').classList.add('hide');
+}
