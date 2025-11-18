@@ -6,8 +6,8 @@
         "slots": [
             {
                 "stats": "active",
-                "name": "admin098",
-                "hair": "aprendiz_3",
+                "name": "teste123",
+                "hair": "aprendiz_1",
                 "class": "Aprendiz",
                 "zeny": 0,
                 "map": "Tutorial_0_1",
@@ -24,23 +24,7 @@
                 "sor": 9
             },
             {
-                "stats": "active",
-                "name": "teste123",
-                "hair": "aprendiz_4",
-                "class": "Aprendiz",
-                "zeny": 0,
-                "map": "Tutorial_0_1",
-                "level": 1,
-                "experience": 0,
-                "weight": 0,
-                "hp": 100,
-                "sp": 75,
-                "for": 5,
-                "agi": 5,
-                "vit": 5,
-                "int": 5,
-                "des": 5,
-                "sor": 5
+                "stats": "empty"
             },
             {
                 "stats": "empty"

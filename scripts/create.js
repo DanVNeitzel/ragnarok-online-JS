@@ -18,7 +18,7 @@ const btnAddSor = document.querySelector('.btn-add-sor');
 
 var styleNumDefault = 1;
 
-
+NewNameChar.value = "";
 
 let default_stats = {
   for: 5,
