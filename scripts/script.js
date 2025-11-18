@@ -30,7 +30,7 @@ const block_charactor = document.querySelector('.block_charactor span');
 const block_login = document.querySelector('.block_login');
 const block_news = document.querySelector('.block_news');
 
-var apiLink = 'https://www.danielneitzel.com.br/api/ragnarokJS/'
+var apiLink = './api/';
 
 var statusLoading = false;
 
