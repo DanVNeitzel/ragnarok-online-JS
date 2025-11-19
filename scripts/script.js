@@ -171,7 +171,8 @@ function cmd(selected) {
             break;
 
         case 'newPlayerChar':
-            
+            NewNameChar.value = '';
+            NewNameChar.focus();
             win_select_player.classList.add('hide');
             win_make_player.style.zIndex = 1;
             win_make_player.classList.remove('hide');

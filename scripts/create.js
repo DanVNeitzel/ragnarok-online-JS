@@ -1,20 +1,20 @@
-const newStyleChar = document.getElementById('newStyleChar');
+var newStyleChar = document.getElementById('newStyleChar');
 
-const NewNameChar = document.getElementById('newUserName');
+var NewNameChar = document.getElementById('newUserName');
 
-const newUserFor = document.getElementById('newUserFor');
-const newUserAgi = document.getElementById('newUserAgi');
-const newUserVit = document.getElementById('newUserVit');
-const newUserInt = document.getElementById('newUserInt');
-const newUserDes = document.getElementById('newUserDes');
-const newUserSor = document.getElementById('newUserSor');
+var newUserFor = document.getElementById('newUserFor');
+var newUserAgi = document.getElementById('newUserAgi');
+var newUserVit = document.getElementById('newUserVit');
+var newUserInt = document.getElementById('newUserInt');
+var newUserDes = document.getElementById('newUserDes');
+var newUserSor = document.getElementById('newUserSor');
 
-const btnAddFor = document.querySelector('.btn-add-for');
-const btnAddAgi = document.querySelector('.btn-add-agi');
-const btnAddVit = document.querySelector('.btn-add-vit');
-const btnAddInt = document.querySelector('.btn-add-int');
-const btnAddDes = document.querySelector('.btn-add-des');
-const btnAddSor = document.querySelector('.btn-add-sor');
+var btnAddFor = document.querySelector('.btn-add-for');
+var btnAddAgi = document.querySelector('.btn-add-agi');
+var btnAddVit = document.querySelector('.btn-add-vit');
+var btnAddInt = document.querySelector('.btn-add-int');
+var btnAddDes = document.querySelector('.btn-add-des');
+var btnAddSor = document.querySelector('.btn-add-sor');
 
 var styleNumDefault = 1;
 
