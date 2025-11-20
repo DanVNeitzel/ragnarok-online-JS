@@ -103,6 +103,12 @@ body {
   margin: 10px 5px;
 }
 
+.left_side_btns {
+  position: absolute;
+  left: 10px;
+  display: flex;
+}
+
 .orb_blue {
   width: 10px;
   height: 10px;
@@ -1363,4 +1369,14 @@ body {
 
 .option_frame {
   padding: 10px 20px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0 0 0 / 0%);
+  z-index: 999;
 }

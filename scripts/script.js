@@ -2,33 +2,35 @@
 var docElem = document.documentElement;
 var statusFullscreen = 'off';
 
-const input_user_id = document.getElementById('input_user_id');
-const input_user_pass = document.getElementById('input_user_pass');
+var input_user_id = document.getElementById('input_user_id');
+var input_user_pass = document.getElementById('input_user_pass');
 
-const win_select_world = document.getElementById('win_select_world');
-const win_last_login = document.getElementById('win_last_login');
-const block_message_login = document.getElementById('block_message_login');
-const win_confirm_exit = document.getElementById('win_confirm_exit');
-const win_select_player = document.getElementById('win_select_player');
-const win_make_player = document.getElementById('win_make_player');
-const win_skills_player = document.getElementById('win_skills_player');
-const win_options_player = document.getElementById('win_options_player');
+var win_select_world = document.getElementById('win_select_world');
+var win_last_login = document.getElementById('win_last_login');
+var block_message_login = document.getElementById('block_message_login');
+var win_confirm_exit = document.getElementById('win_confirm_exit');
+var win_select_player = document.getElementById('win_select_player');
+var win_make_player = document.getElementById('win_make_player');
+var win_skills_player = document.getElementById('win_skills_player');
+var win_options_player = document.getElementById('win_options_player');
 
-const block_login_form = document.getElementById('block_login_form');
+var block_login_form = document.getElementById('block_login_form');
 
-const win_msg_error = document.getElementById('win_msg_error');
-const title_msg_error = document.getElementById('title_msg_error');
-const text_msg_error = document.getElementById('text_msg_error');
+var win_msg_error = document.getElementById('win_msg_error');
+var title_msg_error = document.getElementById('title_msg_error');
+var text_msg_error = document.getElementById('text_msg_error');
 
-const char_slot = document.querySelectorAll('.char_slot');
+var char_slot = document.querySelectorAll('.char_slot');
 
-const loading_screen = document.getElementById('loading_screen');
+var modalOverlay = document.getElementById('modalOverlay');
 
-const clickLBtnLogin = document.querySelectorAll('.click-effect-login');
+var loading_screen = document.getElementById('loading_screen');
 
-const block_charactor = document.querySelector('.block_charactor span');
-const block_login = document.querySelector('.block_login');
-const block_news = document.querySelector('.block_news');
+var clickLBtnLogin = document.querySelectorAll('.click-effect-login');
+
+var block_charactor = document.querySelector('.block_charactor span');
+var block_login = document.querySelector('.block_login');
+var block_news = document.querySelector('.block_news');
 
 var apiLink = './api/';
 
@@ -83,16 +85,19 @@ function showLoginScreen() {
 function cmd(selected) {
     switch (selected) {
         case 'exitGame':
-            win_confirm_exit.style.zIndex = 1;
+            if (!inMap) modalOverlay.classList.remove('hide');
+            win_confirm_exit.style.zIndex = 1000;
             win_confirm_exit.classList.remove('hide');
             break;
 
         case 'closeConfirmExit':
             win_confirm_exit.classList.add('hide');
+            modalOverlay.classList.add('hide');
             break;
 
         case 'resetPage':
             win_confirm_exit.classList.add('hide');
+            modalOverlay.classList.add('hide');
             location.replace(location.href);
             break;
 
@@ -106,6 +111,7 @@ function cmd(selected) {
 
         case 'fecharBlcMsgError':
             resetMsgError();
+            modalOverlay.classList.add('hide');
             input_user_id.focus();
             break;
 
@@ -134,7 +140,8 @@ function cmd(selected) {
                 win_select_player.style.zIndex = 1;
                 win_select_player.classList.remove('hide');
             } else {
-                win_msg_error.style.zIndex = 2;
+                if (!inMap) modalOverlay.classList.remove('hide');
+                win_msg_error.style.zIndex = 1000;
                 win_msg_error.classList.remove('hide');
                 title_msg_error.innerHTML = 'Mensagem';
                 text_msg_error.innerHTML = 'Você não tem permissão pra entrar nesse mundo.';
@@ -171,10 +178,11 @@ function cmd(selected) {
             break;
 
         case 'newPlayerChar':
+            if (!inMap) modalOverlay.classList.remove('hide');
             NewNameChar.value = '';
             NewNameChar.focus();
             win_select_player.classList.add('hide');
-            win_make_player.style.zIndex = 1;
+            win_make_player.style.zIndex = 1000;
             win_make_player.classList.remove('hide');
             break;
 
@@ -184,26 +192,31 @@ function cmd(selected) {
 
         case 'fecharcriarPlayer':
             win_make_player.classList.add('hide');
+            modalOverlay.classList.add('hide');
             win_select_player.style.zIndex = 1;
             win_select_player.classList.remove('hide');
             break;
 
         case 'abrirWinSkillsPlayer':
-            win_skills_player.style.zIndex = 1;
+            if (!inMap) modalOverlay.classList.remove('hide');
+            win_skills_player.style.zIndex = 1000;
             win_skills_player.classList.remove('hide');
             break;
 
         case 'fecharWinSkillsPlayer':
             win_skills_player.classList.add('hide');
+            modalOverlay.classList.add('hide');
             break;
 
         case 'abrirWinOptionsPlayer':
-            win_options_player.style.zIndex = 1;
+            if (!inMap) modalOverlay.classList.remove('hide');
+            win_options_player.style.zIndex = 1000;
             win_options_player.classList.remove('hide');
             break;
 
         case 'fecharWinOptionsPlayer':
             win_options_player.classList.add('hide');
+            modalOverlay.classList.add('hide');
             break;
 
         case 'deletePlayerChar':
@@ -232,7 +245,8 @@ function conSuccess() {
 }
 
 function invalidLogin(type) {
-    win_msg_error.style.zIndex = 1;
+    if (!inMap) modalOverlay.classList.remove('hide');
+    win_msg_error.style.zIndex = 1000;
     win_msg_error.classList.remove('hide');
     title_msg_error.innerHTML = 'Mensagem'
     text_msg_error.innerHTML = 'Usuário ou senha incorretos. Por favor, tente novamente';
@@ -242,7 +256,8 @@ function invalidLogin(type) {
 }
 
 function showMsgError(title, message) {
-    win_msg_error.style.zIndex = 4;
+    if (!inMap) modalOverlay.classList.remove('hide');
+    win_msg_error.style.zIndex = 1000;
     win_msg_error.classList.remove('hide');
     title_msg_error.innerHTML = title;
     text_msg_error.innerHTML = message;
@@ -250,6 +265,7 @@ function showMsgError(title, message) {
 
 function resetMsgError() {
     win_msg_error.classList.add('hide');
+    modalOverlay.classList.add('hide');
     block_message_login.classList.add('hide');
     block_login_form.classList.remove('hide');
     title_msg_error.innerHTML = ''
@@ -259,6 +275,7 @@ function resetMsgError() {
 function genericMsgError() {
     win_msg_error.style.zIndex = 1;
     win_msg_error.classList.add('hide');
+    modalOverlay.classList.add('hide');
     block_message_login.classList.add('hide');
     block_login_form.classList.remove('hide');
     title_msg_error.innerHTML = 'Message';

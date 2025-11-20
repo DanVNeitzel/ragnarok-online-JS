@@ -21,7 +21,6 @@ function Selected(current) {
 
     this.addEventListener('mousemove', dragIt, false);
     window.addEventListener('mouseup', function () {
-      current.style.zIndex = 0;
       current.style.background = "#ffffff";
       current.removeEventListener('mousemove', dragIt, false);
     }, false);

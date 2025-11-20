@@ -350,7 +350,8 @@ function deletePlayerChar() {
   
   // Abrir janela de confirmação com z-index maior
   const confirmDeleteWindow = document.getElementById('win_confirm_delete');
-  confirmDeleteWindow.style.zIndex = 3;
+  if (!inMap) modalOverlay.classList.remove('hide');
+  confirmDeleteWindow.style.zIndex = 1000;
   confirmDeleteWindow.classList.remove('hide');
   document.getElementById('input_delete_pass').value = '';
   document.getElementById('input_delete_pass').focus();
@@ -422,6 +423,7 @@ function confirmarDeleteChar() {
 function cancelarDeleteChar() {
   const confirmDeleteWindow = document.getElementById('win_confirm_delete');
   confirmDeleteWindow.classList.add('hide');
+  modalOverlay.classList.add('hide');
   confirmDeleteWindow.style.zIndex = '';
   document.getElementById('input_delete_pass').value = '';
   window.slotToDelete = null;
