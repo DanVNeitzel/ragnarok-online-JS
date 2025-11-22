@@ -351,7 +351,7 @@ function deletePlayerChar() {
   // Abrir janela de confirmação com z-index maior
   const confirmDeleteWindow = document.getElementById('win_confirm_delete');
   if (!inMap) modalOverlay.classList.remove('hide');
-  confirmDeleteWindow.style.zIndex = 1000;
+  confirmDeleteWindow.style.zIndex = 1001;
   confirmDeleteWindow.classList.remove('hide');
   document.getElementById('input_delete_pass').value = '';
   document.getElementById('input_delete_pass').focus();
@@ -397,6 +397,9 @@ function confirmarDeleteChar() {
           
           // Recarregar slots
           loadCharSlots();
+          
+          // Selecionar o próximo slot disponível
+          selectNextAvailableSlot();
           
           // Fechar janela de confirmação
           cancelarDeleteChar();
@@ -448,4 +451,17 @@ function clearSelectedCharInfo() {
   btnNewPlayerChar.classList.remove('hide');
   btnSelectedChar.classList.add('hide');
   document.getElementById('btnDeleteChar').classList.add('hide');
+}
+
+// Função para selecionar o próximo slot disponível após exclusão
+function selectNextAvailableSlot() {
+  for (let i = 0; i < userData[0].slots.length; i++) {
+    if (userData[0].slots[i].stats !== 'empty') {
+      const slotElement = document.getElementById(`slot_${i + 1}`);
+      selectChar(slotElement);
+      slot_num = i;
+      return;
+    }
+  }
+  // Se nenhum slot disponível, manter vazio
 }

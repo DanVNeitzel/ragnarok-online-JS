@@ -7,10 +7,10 @@
             {
                 "stats": "active",
                 "name": "teste123",
-                "hair": "aprendiz_1",
+                "hair": "aprendiz_3",
                 "class": "Aprendiz",
                 "zeny": 0,
-                "map": "Tutorial_0_1",
+                "map": "Tutorial_0_4",
                 "level": 1,
                 "experience": 0,
                 "weight": 0,
@@ -24,7 +24,23 @@
                 "sor": 9
             },
             {
-                "stats": "empty"
+                "stats": "active",
+                "name": "teste1234",
+                "hair": "aprendiz_4",
+                "class": "Aprendiz",
+                "zeny": 0,
+                "map": "Tutorial_0_1",
+                "level": 1,
+                "experience": 0,
+                "weight": 0,
+                "hp": 100,
+                "sp": 75,
+                "for": 9,
+                "agi": 9,
+                "vit": 9,
+                "int": 1,
+                "des": 1,
+                "sor": 1
             },
             {
                 "stats": "empty"

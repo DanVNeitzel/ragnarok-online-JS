@@ -86,7 +86,7 @@ function cmd(selected) {
     switch (selected) {
         case 'exitGame':
             if (!inMap) modalOverlay.classList.remove('hide');
-            win_confirm_exit.style.zIndex = 1000;
+            win_confirm_exit.style.zIndex = 1001;
             win_confirm_exit.classList.remove('hide');
             break;
 
@@ -141,7 +141,7 @@ function cmd(selected) {
                 win_select_player.classList.remove('hide');
             } else {
                 if (!inMap) modalOverlay.classList.remove('hide');
-                win_msg_error.style.zIndex = 1000;
+                win_msg_error.style.zIndex = 1001;
                 win_msg_error.classList.remove('hide');
                 title_msg_error.innerHTML = 'Mensagem';
                 text_msg_error.innerHTML = 'Você não tem permissão pra entrar nesse mundo.';
@@ -178,11 +178,10 @@ function cmd(selected) {
             break;
 
         case 'newPlayerChar':
-            if (!inMap) modalOverlay.classList.remove('hide');
             NewNameChar.value = '';
             NewNameChar.focus();
             win_select_player.classList.add('hide');
-            win_make_player.style.zIndex = 1000;
+            win_make_player.style.zIndex = 1001;
             win_make_player.classList.remove('hide');
             break;
 
@@ -199,7 +198,7 @@ function cmd(selected) {
 
         case 'abrirWinSkillsPlayer':
             if (!inMap) modalOverlay.classList.remove('hide');
-            win_skills_player.style.zIndex = 1000;
+            win_skills_player.style.zIndex = 1001;
             win_skills_player.classList.remove('hide');
             break;
 
@@ -210,7 +209,7 @@ function cmd(selected) {
 
         case 'abrirWinOptionsPlayer':
             if (!inMap) modalOverlay.classList.remove('hide');
-            win_options_player.style.zIndex = 1000;
+            win_options_player.style.zIndex = 1001;
             win_options_player.classList.remove('hide');
             break;
 
@@ -246,7 +245,7 @@ function conSuccess() {
 
 function invalidLogin(type) {
     if (!inMap) modalOverlay.classList.remove('hide');
-    win_msg_error.style.zIndex = 1000;
+    win_msg_error.style.zIndex = 1001;
     win_msg_error.classList.remove('hide');
     title_msg_error.innerHTML = 'Mensagem'
     text_msg_error.innerHTML = 'Usuário ou senha incorretos. Por favor, tente novamente';
@@ -257,7 +256,7 @@ function invalidLogin(type) {
 
 function showMsgError(title, message) {
     if (!inMap) modalOverlay.classList.remove('hide');
-    win_msg_error.style.zIndex = 1000;
+    win_msg_error.style.zIndex = 1001;
     win_msg_error.classList.remove('hide');
     title_msg_error.innerHTML = title;
     text_msg_error.innerHTML = message;

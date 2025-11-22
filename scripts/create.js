@@ -163,7 +163,14 @@ function createNewPlayer() {
 
 function validatePlayer() {
   if (NewNameChar.value !== '' || NewNameChar.value !== null || NewNameChar.value !== undefined) {
-    if (NewNameChar.value.length >= 6 && NewNameChar.value.length <= 13) {
+    if (NewNameChar.value.length >= 6 && NewNameChar.value.length <= 12) {
+      // Verificar se o nome já existe
+      for (let slot of userData[0].slots) {
+        if (slot.stats !== 'empty' && slot.name === NewNameChar.value) {
+          showErrorMessage('duplicateCharName');
+          return false;
+        }
+      }
       return true;
     } else {
       showErrorMessage('numberCharName');
